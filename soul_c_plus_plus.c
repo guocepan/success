@@ -9,3 +9,92 @@ c语言的工作模式，将要处理的数据放在全局，这使得所有的�
 能开门的和能传话的不是同一个人，你要求的问题很过分，狱警就不会给你传递信息。这里的过分，就是
 你设计的函数没有这个选项。和狱警没有上级获取权限一样，不能进行。
 	这种制度，保证了数据的安全，也就是犯人的安全。
+	
+	
+2 防卫式声明
+
+#ifndef  _DOG_
+#define  _DOG_
+...
+
+#endif  //_DOG_
+
+为什么要这样声明。
+这个好比上流人士都戴劳力士手表，都大保镖一样。
+在程序里，这个防卫式声明就是为了
+防止同一个头文件被重复包含。
+在预编译阶段，编译器的目的就是将 XX.h展开。
+
+例子：
+
+car.h中：
+
+class Car
+{
+	...
+}
+
+在che.h中：
+
+#include "car.h"
+class che
+{
+	
+	public:
+	Car  car;
+	
+}
+
+在main.c中
+
+#include  “car.h”
+#include  "che.h"
+#include <iostream>
+using namespace std;
+
+int main
+{
+	
+	....
+	
+}
+
+在预编译时，展开数据就变成了；
+
+
+class Car
+{
+	...
+}
+
+class Car     //显然这两个已经重复定义了，这就是平时所说的redifinition  
+{
+	...
+}
+
+class che
+{
+	
+	public:
+	Car  car;
+	
+}
+
+#include <iostream>
+using namespace std;
+int main
+{
+	
+	....
+	
+}
+
+所以防卫式的声明就是防止头文件同一个头文件被重复包含，就是同一个XX.h 被重复包含。
+
+
+
+
+
+
+
+
