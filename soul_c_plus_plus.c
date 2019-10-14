@@ -93,6 +93,32 @@ int main
 
 
 
+3、模板的语法；
+模板就是现在还不去定义数据的类型是什么，而是在以后再对它进行定义。
+
+template <typename T>  
+class Dog
+{
+public:
+	dog(T e = 0, T l = 0):eye(e),leg(l)
+	{
+		//这个地方的T也是后面定义写的。
+	}
+
+private :
+T eye; //这个就是要被替换的t的类型
+T leg;
+
+
+};	
+
+int main{
+	
+	Dog<double> xiaohei(2,4);
+	Dog<int >   xiaohang(2,4);
+}
+这样就很简单的将他们的类型换掉了，而不用再设计一个新的class 就因为这个数据的类型不同。 
+
 
 
 
